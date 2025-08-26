@@ -1,18 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import ImageUploader from './components/ImageUploader';
+import "./App.css";
+import ImageUploader from "./components/ImageUploader";
+import LinkToGalaxyZoo from "./components/LinkToGalaxyZoo";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
-      <h1 className="text-3xl font-bold mb-6">Galaxy Classifier</h1>
-      <p className="mb-6 text-gray-300">
+    <div className="app">
+      <h1 className="app-title">Galaxy Classifier</h1>
+      <p className="app-description">
         Subí imágenes de galaxias para su posterior análisis.
       </p>
       <ImageUploader />
-    </div>   
+      <div style={{ marginTop: "2rem" }}>
+        <LinkToGalaxyZoo />
+      </div>
+    </div>
+    
   );
 }
 
-export default App
+export default App;
