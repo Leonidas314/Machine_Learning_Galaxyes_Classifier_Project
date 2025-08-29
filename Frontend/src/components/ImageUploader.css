@@ -39,3 +39,18 @@
   text-align: center;
   color: #444;
 }
+.uploader-btn {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  border: none;
+  background-color: #2d89ef;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.uploader-btn:hover {
+  background-color: #1a5fb4;
+}

@@ -1,17 +1,43 @@
 import { useState } from "react";
-import "./ImageUploader.css"; // Importamos los estilos del componente
+import "./ImageUploader.css";
 
 export default function ImageUploader() {
   const [images, setImages] = useState([]);
 
-  const handleUpload = (e) => {
+  // Guardar archivos seleccionados para preview y envío
+  const handleFileSelect = (e) => {
     const files = Array.from(e.target.files);
     const previews = files.map((file) => ({
+      file, // mantenemos el archivo para enviar
       name: file.name,
       url: URL.createObjectURL(file),
     }));
 
     setImages((prev) => [...prev, ...previews]);
+  };
+
+  // Enviar imágenes al backend
+  const handleUpload = async () => {
+    if (images.length === 0) return;
+
+    const formData = new FormData();
+    images.forEach((img) => formData.append("images", img.file));
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Error al subir las imágenes");
+
+      const data = await response.json();
+      console.log("Respuesta del backend:", data);
+      alert("Imágenes enviadas correctamente!");
+    } catch (error) {
+      console.error("Error en la subida:", error);
+      alert("Error al enviar imágenes.");
+    }
   };
 
   return (
@@ -20,7 +46,7 @@ export default function ImageUploader() {
         type="file"
         accept="image/*"
         multiple
-        onChange={handleUpload}
+        onChange={handleFileSelect}
         className="uploader-input"
       />
 
@@ -32,6 +58,10 @@ export default function ImageUploader() {
           </div>
         ))}
       </div>
+
+      <button onClick={handleUpload} className="uploader-btn">
+        Enviar al backend
+      </button>
     </div>
   );
 }
