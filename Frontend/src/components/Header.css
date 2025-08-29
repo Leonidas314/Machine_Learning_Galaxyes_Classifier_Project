@@ -1,0 +1,12 @@
+.header {
+    width: 100%;
+    display: flex;
+    background-color: rgba(34, 34, 34, 0.5);
+    align-item: right;
+    justify-content: space-around;
+    z-index: 100;
+}
+
+.header-btn {
+    background-color: rgba(34, 34, 34, 0.0);
+}
