@@ -2,6 +2,7 @@ import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import LinkToGalaxyZoo from "./components/LinkToGalaxyZoo";
 import ImageGallery from "./components/ImageGallery";
+import Header from "./components/Header";
 
 function App() {
    const mockImages = [
@@ -12,6 +13,7 @@ function App() {
   ];
   return (
     <div className="app">
+      <Header buttons={["Home", "About", "Learn", "Contact"]} />
       <h1 className="app-title">Galaxy Classifier</h1>
       <p className="app-description">
         Subí imágenes de galaxias para su posterior análisis.
