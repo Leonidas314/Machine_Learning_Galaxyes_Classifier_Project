@@ -1,0 +1,20 @@
+Vamos a probar en un principio la siguiente arquitectura basada en Krizhevsky (AlexNet style)
+sin cambiar el formato de las imagenes originales que son de 128x128.
+
+Entrada: 128x128 RGB
+       |
+   Conv1 -> ReLU -> MaxPool(2x2)
+       |
+   Conv2 -> ReLU -> MaxPool(2x2)
+       |
+   Conv3 -> ReLU
+       |
+   Conv4 -> ReLU -> MaxPool(2x2)
+       |
+   Flatten
+       |
+   Dense -> ReLU o Maxout
+       |
+   Dense -> ReLU o Maxout
+       |
+   Dense -> Softmax (output: #clases de galaxias)
