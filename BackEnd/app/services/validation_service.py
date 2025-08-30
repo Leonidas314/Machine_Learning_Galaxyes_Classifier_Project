@@ -15,7 +15,7 @@ def validate_image(file):
     return False, "Formato no permitido. Solo JPG y PNG"
   
 
-  "validar mime type"
+  """validar mime type"""
   if file.mimetype in not ALLOWED_MIME_TYPES:
     return False, "El tipo de archivo no es valido"
 
@@ -24,3 +24,12 @@ def validate_image(file):
   size_mb = file.tell() / (1024 * 1024)
   if size_mb > MAX_SIZE_MB:
     return False, "El arhivo supera los 5MB"
+
+  """check procesar imagen """
+  try:
+    img = Image.open(file)
+    img.verify()  # verifica estructura de la imagen
+  except Exception:
+    return False, "El archivo no es una imagen válida."
+
+  eturn True, "Imagen válida."
