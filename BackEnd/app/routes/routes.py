@@ -8,7 +8,10 @@ def classify():
     image = request.files["image"]
     
     #Add MIME type check, extension check and/or image verification by processing
-    
+    valid, message = validate_image(image)
+    if not valid:
+        return jsonify({"error": message}), 400
+
     #Simulated call to ML engine
     result = {
         "label": "galaxy A",
