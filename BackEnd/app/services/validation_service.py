@@ -1,6 +1,7 @@
 from PIL import image
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+ALLOWED_MIME_TYPES = {"image/jpeg", "image/png"}
 MAX_SIZE_MB = 5
 
 """chequea extension"""
@@ -12,6 +13,11 @@ def validate_image(file):
   
   if not allowed_file(file.filename):
     return False, "Formato no permitido. Solo JPG y PNG"
+  
+
+  "validar mime type"
+  if file.mimetype in not ALLOWED_MIME_TYPES:
+    return False, "El tipo de archivo no es valido"
 
   """validar tamaño"""
   file.seek(0,2)
