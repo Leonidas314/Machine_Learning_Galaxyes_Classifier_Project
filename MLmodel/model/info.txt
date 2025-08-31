@@ -1,5 +1,5 @@
 Vamos a probar en un principio la siguiente arquitectura basada en Krizhevsky (AlexNet style)
-sin cambiar el formato de las imagenes originales que son de 128x128.
+cambiando el tamaño de las imagenes a 64x64.
 
 Entrada: 128x128 RGB
        |
