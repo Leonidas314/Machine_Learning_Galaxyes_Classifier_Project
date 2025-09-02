@@ -16,7 +16,7 @@ def validate_image(file):
   
 
   #validar mime type
-  if file.mimetype in not ALLOWED_MIME_TYPES:
+  if file.mimetype not in ALLOWED_MIME_TYPES:
     return False, "El tipo de archivo no es valido"
 
   #validar tamaño
@@ -27,7 +27,7 @@ def validate_image(file):
 
   #check procesar imagen
   try:
-    img = Image.open(file)
+    img = image.open(file)
     img.verify() 
   except Exception:
     return False, "El archivo no es una imagen válida."
