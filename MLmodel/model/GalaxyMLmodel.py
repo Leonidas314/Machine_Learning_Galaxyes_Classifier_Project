@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 import seaborn as sns
 
 # Rutas
-dataset_dir = Path(".") / "dataset"
+dataset_dir = Path("..") / "dataset"
 path_training_solutions = dataset_dir / "training_solutions_rev1.csv"
 path_training_images = dataset_dir / "images_training_rev1"
 path_test_images = dataset_dir / "images_test_rev1"
@@ -41,13 +41,11 @@ IMG_SIZE = 64
 BATCH_SIZE = 32
 NUM_CLASSES = len(prob_columns)
 
-print(tf.config.list_physical_devices("GPU"))
-
 # Función de preprocessing
 def preprocess_image(img_path: Path):
     if not img_path.exists():
         raise FileNotFoundError(f"No existe el archivo: {img_path}")
-    #print(f"Abriendo: {img_path}")
+    print(f"Abriendo: {img_path}")
     img = Image.open(img_path).convert("RGB")
     img = img.resize((IMG_SIZE, IMG_SIZE))
     return np.array(img) / 255.0
