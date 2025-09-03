@@ -13,7 +13,7 @@ function App() {
   ];
   return (
     <div className="app">
-      <Header buttons={["Home", "About", "Learn", "Contact"]} />
+      <Header />
       <h1 className="app-title">Galaxy Classifier</h1>
       <p className="app-description">
         Subí imágenes de galaxias para su posterior análisis.
