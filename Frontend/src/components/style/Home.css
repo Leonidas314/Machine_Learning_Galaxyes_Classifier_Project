@@ -1,0 +1,15 @@
+.home {
+    display: flex;
+    aling-item: center;
+    flex-direction: column;
+    aling-item: center;
+}
+
+.home-applications {
+    display: flex;
+    aling-item: center;
+}
+
+.application-button {
+    background-color: red;
+}
