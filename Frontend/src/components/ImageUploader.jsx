@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ImageUploader.css";
+import "./style/ImageUploader.css";
 
 export default function ImageUploader() {
   const [images, setImages] = useState([]);
