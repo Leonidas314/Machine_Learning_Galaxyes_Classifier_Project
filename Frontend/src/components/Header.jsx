@@ -6,7 +6,7 @@ export default function Header() {
     const buttons = [
         {label: "Home", url: "/"},
         {label: "About", url: "/about"},
-        {label: "App", url: "/app"},
+        {label: "Predict", url: "/predict"},
         {label: "Learn", url: "/learn"},
     ]
 

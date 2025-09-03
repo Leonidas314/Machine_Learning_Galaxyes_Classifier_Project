@@ -1,15 +1,16 @@
 .home {
     display: flex;
-    aling-item: center;
+    align-items: center;
     flex-direction: column;
-    aling-item: center;
+    
 }
 
 .home-applications {
     display: flex;
-    aling-item: center;
+    align-items: center;
 }
 
 .application-button {
-    background-color: red;
+    background-color: rgba(1,1, 1, 0.25);
+    color: wheat;
 }

@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     background-color: rgba(34, 34, 34, 0.5);
-    align-item: right;
+    align-items: center;
     justify-content: space-around;
     z-index: 100;
 }

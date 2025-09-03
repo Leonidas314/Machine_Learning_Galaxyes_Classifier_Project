@@ -1,10 +1,10 @@
-import "./App.css";
-import ImageUploader from "./components/ImageUploader";
-import LinkToGalaxyZoo from "./components/LinkToGalaxyZoo";
-import ImageGallery from "./components/ImageGallery";
-import Header from "./components/Header";
+import "./style/Predict.css";
+import ImageUploader from "./ImageUploader";
+import LinkToGalaxyZoo from "./LinkToGalaxyZoo";
+import ImageGallery from "./ImageGallery";
+import Header from "./Header";
 
-function App() {
+export default function Predict() {
    const mockImages = [
     { url: "https://placehold.co/200x200/000000/FFFFFF?text=Galaxy+1", name: "Galaxy 1" },
     { url: "https://placehold.co/200x200/222222/FFFFFF?text=Galaxy+2", name: "Galaxy 2" },
@@ -29,4 +29,3 @@ function App() {
   );
 }
 
-export default App;
