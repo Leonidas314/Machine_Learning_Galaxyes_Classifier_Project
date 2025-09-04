@@ -6,4 +6,21 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+
+  /* Control del layout general */
+  display: flex;
+  flex-direction: column; /* o row */
+  align-items: center;    /* centra en horizontal */
+  justify-content: flex-start; /* cambia a center si querés todo centrado */
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
