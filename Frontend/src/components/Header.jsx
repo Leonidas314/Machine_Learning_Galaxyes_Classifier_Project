@@ -21,7 +21,7 @@ export default function Header() {
 
 function HeaderButton({ label, url }) {
     return (
-        <Link to={url}>
+        <Link className="header-btn" to={url}>
             {label}
         </Link>
     )

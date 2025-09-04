@@ -1,12 +1,29 @@
 .header {
     width: 100%;
     display: flex;
-    background-color: rgba(34, 34, 34, 0.5);
+    background-color: rgba(1,55,73, 0.5);
     align-items: center;
     justify-content: space-around;
     z-index: 100;
 }
 
 .header-btn {
-    background-color: rgba(34, 34, 34, 0.0);
+    color: white;
+    text-decoration: none;   /* remove underline */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.header-btn:hover {
+    background: rgba(1,55,73, 0.1);
+    color: #ffd700; /* golden highlight */
+}
+
+/* Active route style (optional, if using NavLink) */
+.active {
+    background: rgba(1,55,73, 0.2);
+    color: #00ffff;
 }

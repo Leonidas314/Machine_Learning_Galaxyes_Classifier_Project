@@ -1,9 +1,14 @@
 body {
   background-image: url("assets/milkyWay.jpg");
   background-color: rgba(1, 1, 1, 0.5);
-  background-size: cover;     /* Llena la pantalla */
-  background-position: center; /* Centrada */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
-  padding: 0;
+
+  /*
+    background: linear-gradient(160deg, #094B91 0%, #226BB8 50%, #094B91 100%);
+  */
+    height: 100vh;
+    padding: 0;
+    color: white;
 }
