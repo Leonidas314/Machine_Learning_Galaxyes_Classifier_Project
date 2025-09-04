@@ -21,9 +21,7 @@ export default function Predict() {
       <ImageUploader />
        <h2 style={{ marginTop: "2rem" }}>Galaxias similares</h2>
       <ImageGallery images={mockImages} />
-      <div style={{ marginTop: "2rem" }}>
-        <LinkToGalaxyZoo />
-      </div>
+      
     </div>
     
   );
