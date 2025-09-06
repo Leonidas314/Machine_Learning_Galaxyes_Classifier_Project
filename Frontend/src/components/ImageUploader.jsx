@@ -48,9 +48,8 @@ export default function ImageUploader() {
 
   return (
     error ? (
-      <ErrorMessage message={error}/>
+      <ErrorMessage message={error}  onRetry={() => setError(null)}/>
     ):(
-
       <div className="uploader">
         <input
           type="file"
@@ -68,7 +67,7 @@ export default function ImageUploader() {
             </div>
           ))}
         </div>
-
+        
       <button onClick={handleUpload} className="uploader-btn">
         Enviar al backend
       </button>
