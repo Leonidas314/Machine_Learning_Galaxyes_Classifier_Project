@@ -39,10 +39,12 @@ export default function ImageUploader() {
         setError(data.error);
       } else {
         alert("Imágenes enviadas correctamente!");
+        setImages([])
       }
       } catch (err) {
         console.error("Error en la subida:", err);
         setError(err.message); // 🔹 guarda el mensaje de error
+        setImages([])
       }
   };
 
