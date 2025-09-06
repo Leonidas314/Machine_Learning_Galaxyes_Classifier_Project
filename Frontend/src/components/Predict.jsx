@@ -15,7 +15,6 @@ export default function Predict() {
 
   return (
     <div className="app">
-      <Header />
       <h1 className="app-title">Galaxy Classifier</h1>
       <p className="app-description">
         Subí imágenes de galaxias para su posterior análisis.

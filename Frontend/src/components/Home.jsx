@@ -13,7 +13,6 @@ export default function Home() {
 
     return (
         <div className="home">
-            <Header />
             <h1> ChadIA- Galaxy Classifier </h1>
             <div className="home-applications">
                 <ApplicationButton name={play.name} desc={play.desc} />
