@@ -1,26 +1,19 @@
 from flask import Flask
-from flask_cors import CORS
-from app.routes.routes import api_bp
-from app.db import db, migrate
-#from app.models import image_model
+from .db import db, migrate
 
 def create_app():
     app = Flask(__name__)
-    
-    #Habilita cross-origin resource sharing (para recibir request del Frontend)
-    CORS(app)
-       
-    #Definición del motor sql
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
+    # Configuraciones DB
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/database.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
-    #Inicialización sql en la instancia de la app
+
+    # Inicializar extensiones
     db.init_app(app)
-    
-    #Inicialización la herramienta de migraciones
     migrate.init_app(app, db)
-      
-    #Registro del blueprint de rutas en la app 
-    app.register_blueprint(api_bp)
-    
+
+    # Importar rutas y registrarlas
+    from .routes import api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
+
     return app
