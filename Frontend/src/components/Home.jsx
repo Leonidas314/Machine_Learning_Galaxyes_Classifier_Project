@@ -24,7 +24,7 @@ export default function Home() {
 
 function ApplicationButton({ name, desc }) {
     return (
-        <div className="application-button">
+        <div className="blur-background">
             <h3> {name} </h3>
             <p>
                 {desc}

@@ -17,8 +17,3 @@
     align-items: center;
     justify-content: space-around;
 }
-
-.application-button {
-    background-color: rgba(1,55,73, 0.5);
-    color: white;
-}

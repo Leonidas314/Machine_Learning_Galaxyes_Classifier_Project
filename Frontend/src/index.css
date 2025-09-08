@@ -24,3 +24,8 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.blur-background {
+    background-color: rgba(1,55,73, 0.5);
+    color: white;
+}

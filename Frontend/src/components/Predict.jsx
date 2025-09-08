@@ -14,12 +14,14 @@ export default function Predict() {
   ];
 
   return (
-    <div className="app">
-      <h1 className="app-title">Galaxy Classifier</h1>
-      <p className="app-description">
-        Subí imágenes de galaxias para su posterior análisis.
-      </p>
-      <ImageUploader />
+    <div className="blur-background">
+        <div className="app">
+          <h1 className="app-title">Galaxy Classifier</h1>
+          <p className="app-description">
+            Subí imágenes de galaxias para su posterior análisis.
+          </p>
+          <ImageUploader />
+        </div>
     </div>
     
   );

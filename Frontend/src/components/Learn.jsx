@@ -39,7 +39,7 @@ function Articles() {
 
 function Article({ name, resume }) {
     return (
-        <li>
+        <li className="blur-background">
             <h1>{name}</h1>
             <p>{resume}</p>
         </li>
