@@ -1,9 +1,10 @@
 import tensorflow as tf
+import tensorflow.keras as keras   
 import numpy as np
 from PIL import Image
 
-IMG_SIZE = 64  # igual que en GalaxyMLModel.py
-CLASSES = ["Espiral", "Elíptica", "Irregular"]  # ajusta según tu dataset
+IMG_SIZE = 64
+CLASSES = ["Espiral", "Elíptica", "Irregular"] # Temporal
 
 class MLEngine:
     def __init__(self, model_path="galaxy_model.h5"):
