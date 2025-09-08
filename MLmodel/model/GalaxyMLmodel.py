@@ -124,6 +124,7 @@ model.save("galaxy_model.h5")
 plt.plot(history.history['loss'], label='train_loss')
 plt.plot(history.history['val_loss'], label='val_loss')
 plt.legend()
+plt.savefig()
 plt.show()
 
 sample_idx = random.sample(range(len(X_val)), 5)
