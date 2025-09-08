@@ -1,7 +1,7 @@
 Vamos a probar en un principio la siguiente arquitectura basada en Krizhevsky (AlexNet style)
 cambiando el tamaño de las imagenes a 64x64.
 
-Entrada: 128x128 RGB
+Entrada: 64x64 RGB
        |
    Conv1 -> ReLU -> MaxPool(2x2)
        |
