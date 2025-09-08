@@ -1,3 +1,4 @@
 MLmodel/GalaxyClassification/dataset
 venv/
 .vscode/
+**/__pycache__/
