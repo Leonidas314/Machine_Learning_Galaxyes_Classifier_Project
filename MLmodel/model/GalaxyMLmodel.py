@@ -8,9 +8,10 @@ from tensorflow import keras
 from tensorflow.keras import layers, models
 from sklearn.model_selection import train_test_split
 import seaborn as sns
+import random
 
 # Rutas
-dataset_dir = Path("..") / "dataset"
+dataset_dir = Path("/home/david/Descargas/dataset/")
 path_training_solutions = dataset_dir / "training_solutions_rev1.csv"
 path_training_images = dataset_dir / "images_training_rev1"
 path_test_images = dataset_dir / "images_test_rev1"
@@ -42,39 +43,40 @@ BATCH_SIZE = 32
 NUM_CLASSES = len(prob_columns)
 
 # Función de preprocessing
-def preprocess_image(img_path: Path):
-    if not img_path.exists():
-        raise FileNotFoundError(f"No existe el archivo: {img_path}")
-    print(f"Abriendo: {img_path}")
-    img = Image.open(img_path).convert("RGB")
-    img = img.resize((IMG_SIZE, IMG_SIZE))
-    return np.array(img) / 255.0
+def preprocess_image_tf(filename, label):
+    img = tf.io.read_file(filename)
+    img = tf.image.decode_jpeg(img, channels=3)
+    img = tf.image.resize(img, [IMG_SIZE, IMG_SIZE])
+    img = tf.cast(img, tf.float32) / 255.0
+    return img, label
 
 # Cargar dataset
-def load_dataset(image_folder: Path, solutions_df, prob_columns):
-    images = []
-    labels = []
+image_paths = []
+labels = []
 
-    for _, row in solutions_df.iterrows():
-        galaxy_id = f"{int(row['GalaxyID'])}.jpg"
-        img_path = image_folder / galaxy_id
+for _, row in training_solutions.iterrows():
+    galaxy_id = f"{int(row['GalaxyID'])}.jpg"
+    img_path = path_training_images / galaxy_id
 
-        if img_path.exists():
-            images.append(preprocess_image(img_path))
-            labels.append(row[prob_columns].values)
-        else:
-            print(f"Imagen no encontrada: {img_path}")
+    if img_path.exists():
+        image_paths.append(str(img_path))
+        labels.append(row[prob_columns].values.astype(np.float32))
 
-    X = np.array(images, dtype=np.float32)
-    y = np.array(labels, dtype=np.float32)
-    return X, y
-
-print("Cargando dataset de entrenamiento...")
-X, y = load_dataset(path_training_images, training_solutions, prob_columns)
-print(f"Dataset cargado: {X.shape[0]} imágenes, tamaño {X.shape[1:]}")
+image_paths = np.array(image_paths)
+labels = np.array(labels, dtype=np.float32)
 
 # (scikit learn) Divide el dataset para evaluarse durante el entrenamiento
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(image_paths, labels, test_size=0.2, random_state=42)
+
+# Dataset de entrenamiento
+train_ds = tf.data.Dataset.from_tensor_slices((X_train, y_train))
+train_ds = train_ds.map(preprocess_image_tf, num_parallel_calls=tf.data.AUTOTUNE)
+train_ds = train_ds.shuffle(1000).batch(BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
+
+# Dataset de validación
+val_ds = tf.data.Dataset.from_tensor_slices((X_val, y_val))
+val_ds = val_ds.map(preprocess_image_tf, num_parallel_calls=tf.data.AUTOTUNE)
+val_ds = val_ds.batch(BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
 
 # modelo CNN
 model = models.Sequential([
@@ -111,10 +113,42 @@ model.summary()
 # -------------------------------
 # Entrenamiento
 history = model.fit(
-    X_train, y_train,
-    validation_data=(X_val, y_val),
+    train_ds,
+    validation_data=val_ds,
     batch_size=BATCH_SIZE,
     epochs=20
 )
 
 model.save("galaxy_model.h5")
+
+plt.plot(history.history['loss'], label='train_loss')
+plt.plot(history.history['val_loss'], label='val_loss')
+plt.legend()
+plt.show()
+
+sample_idx = random.sample(range(len(X_val)), 5)
+
+for idx in sample_idx:
+    img_path = X_val[idx]
+    true_label = y_val[idx]
+
+    # Preprocesar la imagen (igual que en preprocess_image_tf)
+    img = tf.io.read_file(img_path)
+    img = tf.image.decode_jpeg(img, channels=3)
+    img = tf.image.resize(img, [IMG_SIZE, IMG_SIZE])
+    img = tf.cast(img, tf.float32) / 255.0
+    img_exp = tf.expand_dims(img, axis=0)  # batch de 1
+
+    # Predicción
+    pred = model.predict(img_exp, verbose=0)[0]
+
+    # Top 3 categorías
+    top3_idx = np.argsort(pred)[-3:][::-1]
+    top3_labels = [(prob_columns[i], pred[i]) for i in top3_idx]
+
+    # Mostrar
+    plt.figure(figsize=(3,3))
+    plt.imshow(img.numpy())
+    plt.axis("off")
+    plt.title("\n".join([f"{name}: {p:.2f}" for name, p in top3_labels]))
+    plt.show()
