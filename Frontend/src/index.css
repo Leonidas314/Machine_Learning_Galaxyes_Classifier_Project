@@ -26,6 +26,10 @@ body {
 }
 
 .blur-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: antiquewhite;
     border-radius: 10%;
     background-color: rgba(0,0,0, 0.65);
