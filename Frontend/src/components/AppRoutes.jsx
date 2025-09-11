@@ -8,13 +8,14 @@ export default function AppRoutes() {
     return (
         <>
             <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/predict" element={<Predict />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/learn" element={<Learn />} />
-            </Routes>
+            <div className='routes-container'>
+                <Routes>    
+                    <Route path="/" element={<Home />} />
+                    <Route path="/predict" element={<Predict />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/learn" element={<Learn />} />
+                </Routes>
+            </div>
         </>
-        
     );
 }

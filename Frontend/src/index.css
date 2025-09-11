@@ -26,6 +26,20 @@ body {
 }
 
 .blur-background {
-    background-color: rgba(1,55,73, 0.5);
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: antiquewhite;
+    border-radius: 10%;
+    background-color: rgba(0,0,0, 0.65);
+}
+
+.routes-container{
+  height:90vh ;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid red 1px;
 }
